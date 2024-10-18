@@ -8,10 +8,10 @@ RUN apk update && apk add --no-cache \
     && mkdir -p /etc/supervisor/conf.d
 
 # Copy Supervisor configuration
-COPY ./docker/supervisord/supervisord.conf /etc/supervisor/supervisord.conf
+COPY ./docker/supervisord/conf.d/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Expose the port for Supervisor (if you need to access it externally)
 EXPOSE 8080
 
 # Start Supervisor when the container starts
-CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]

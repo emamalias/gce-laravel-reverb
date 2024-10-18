@@ -80,8 +80,8 @@ services:
     ports:
        - "8080:8080"
     volumes:
-      - ./src:/var/www/html
-      - ./docker/supervisord/supervisord.conf:/etc/supervisor/supervisord.conf
+      - ./src:/var/www/html:cached
+      - ./docker/supervisord/conf.d/:/etc/supervisor/conf.d/
     networks:
       - w3c-network
 
