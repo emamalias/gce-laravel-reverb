@@ -1,10 +1,10 @@
 FROM php:8.2-fpm-bookworm
 
 # Copy composer.lock and composer.json
-COPY ./src/composer.lock ./src/composer.json /var/www/
+COPY ./src/composer.lock ./src/composer.json /var/www/html/
 
 # Set working directory
-WORKDIR /var/www
+WORKDIR /var/www/html
 
 RUN apt-get update && apt-get install -y \
     build-essential \
@@ -58,10 +58,7 @@ COPY ./src /var/www/html
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache \
     && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
-# Copy existing application directory permissions
-COPY --chown=www-data:www-data ./src /var/www/html
-
-# Change current user to www
+# Change current user to nginx
 USER nginx
 
 # Expose port 9000 and start php-fpm server
