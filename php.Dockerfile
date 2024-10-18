@@ -52,10 +52,14 @@ RUN groupadd -g 1000 nginx
 RUN useradd -u 101 -ms /bin/bash -g nginx nginx
 
 # Copy existing application directory contents
-COPY ./src /var/www
+COPY ./src /var/www/html
+
+# Set ownership and permissions for Laravel's storage and cache directories
+RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache \
+    && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
 # Copy existing application directory permissions
-COPY --chown=www:www ./src /var/www
+COPY --chown=www-data:www-data ./src /var/www/html
 
 # Change current user to www
 USER nginx
