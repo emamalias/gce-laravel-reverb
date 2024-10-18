@@ -54,8 +54,6 @@ services:
      tty: true
      environment:
         MYSQL_DATABASE: w3c-sockets
-        MYSQL_USER: root
-        MYSQL_PASSWORD: "yourawesomemysqlpassword"
         MYSQL_ROOT_PASSWORD: "yourawesomemysqlpassword"
         SERVICE_TAGS: dev
         SERVICE_NAME: mysql
