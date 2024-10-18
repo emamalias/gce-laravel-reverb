@@ -10,9 +10,6 @@ RUN apk update && apk add --no-cache \
 # Copy Supervisor configuration
 COPY ./docker/supervisord/supervisord.conf /etc/supervisor/supervisord.conf
 
-# Copy additional configuration for processes managed by Supervisor
-COPY ./docker/supervisord/conf.d/ /etc/supervisor/conf.d/
-
 # Expose the port for Supervisor (if you need to access it externally)
 EXPOSE 8080
 
