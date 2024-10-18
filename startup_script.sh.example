@@ -21,7 +21,7 @@ services:
        - "443:443"
      volumes:
        - ./src:/var/www/html:cached
-       - ./docker/nginx/conf.d:/etc/nginx/conf.d
+       - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
        - /etc/letsencrypt/ssl/fullchain.pem:/etc/nginx/ssl/fullchain.pem
        - /etc/letsencrypt/ssl/privkey.pem:/etc/nginx/ssl/privkey.pem
 
