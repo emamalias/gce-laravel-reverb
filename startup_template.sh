@@ -10,7 +10,7 @@ mkdir -p /etc/nginx/ssl
 openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
     -keyout /etc/nginx/ssl/privkey.pem \
     -out /etc/nginx/ssl/fullchain.pem \
-    -subj "/C=US/ST=State/L=City/O=Organization/OU=Department/CN=yourdomain.com"
+    -subj "/C=US/ST=State/L=City/O=Organization/OU=Department/CN=ws.yourdomain.com"
 
 # Permissions for SSL certificates
 chmod 600 /etc/nginx/ssl/privkey.pem /etc/nginx/ssl/fullchain.pem
