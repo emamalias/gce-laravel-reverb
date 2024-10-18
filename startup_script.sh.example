@@ -4,6 +4,8 @@ cd src
 #
 docker run --rm -v $(pwd):/app composer install
 
+cd ~/laravel-web-socket
+
 # docker-compose
 cat <<EOL > ~/laravel-web-socket/docker-compose.yml
 version: '3.8'
@@ -59,18 +61,6 @@ services:
      volumes:
        - ./docker/data/mysql-data:/var/lib/mysql
 
-  php-myadmin:
-    image: phpmyadmin
-    restart: always
-    container_name: w3c-phpMyadmin
-    ports:
-      - 8081:80
-    environment:
-      - PMA_HOST=mysql
-      - PMA_PORT=3306
-    networks:
-       - w3c-network
-
   redis:
     image: redis:alpine
     container_name: w3c-redis
@@ -99,5 +89,7 @@ networks:
   w3c-network:
     driver: bridge
 EOL
+
+docker-compose down --remove-orphans
 
 docker-compose up -d — build
