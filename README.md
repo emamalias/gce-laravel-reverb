@@ -31,3 +31,10 @@ sed -i 's/REVERB_PORT=.*/REVERB_PORT=443/' .env
 sed -i 's/REVERB_SCHEME=.*/REVERB_SCHEME=https/' .env
 
 ```
+
+
+open port on vpc network
+
+```bash
+gcloud compute --project=YOUR-PROJECT-ID firewall-rules create allow-websocket-port --direction=INGRESS --priority=1000 --network=default --action=ALLOW --rules=tcp:8000-9000 --source-ranges=0.0.0.0/0
+```

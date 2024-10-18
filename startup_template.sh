@@ -4,16 +4,15 @@ cd ~
 
 apt update && apt install -y openssl curl git docker-compose
 
-# Generate self-signed SSL certificate
-mkdir -p /etc/nginx/ssl
+mkdir -p /etc/letsencrypt/ssl
 
 openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
-    -keyout /etc/nginx/ssl/privkey.pem \
-    -out /etc/nginx/ssl/fullchain.pem \
+    -keyout /etc/letsencrypt/ssl/privkey.pem \
+    -out /etc/letsencrypt/ssl/fullchain.pem \
     -subj "/C=US/ST=State/L=City/O=Organization/OU=Department/CN=ws.yourdomain.com"
 
 # Permissions for SSL certificates
-chmod 600 /etc/nginx/ssl/privkey.pem /etc/nginx/ssl/fullchain.pem
+chmod 600 /etc/letsencrypt/ssl/privkey.pem /etc/letsencrypt/ssl/fullchain.pem
 
 apt install apt-transport-https ca-certificates curl software-properties-common -y
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --batch --yes --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
