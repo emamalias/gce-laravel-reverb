@@ -17,8 +17,8 @@ services:
      container_name: w3c-nginx
      restart: unless-stopped
      ports:
-       - "8081:80"
-       - "8082:443"
+       - "80:80"
+       - "443:443"
      volumes:
        - ./src:/var/www/html:cached
        - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
@@ -78,8 +78,7 @@ services:
       dockerfile: supervisord.Dockerfile
     container_name: w3c-supervisor
     ports:
-       - "8081:8081"
-       - "8082:8082"
+       - "8080:8080"
     volumes:
       - ./src:/var/www/html:cached
       - ./docker/supervisord/conf.d/:/etc/supervisor/conf.d/
