@@ -13,14 +13,14 @@ RUN apt-get update && apt-get install -y \
     gnupg \
     curl
 
+# Clear cache
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+
 # Add repo MySQL
-RUN curl -s https://dev.mysql.com/downloads/repo/apt/ \
-    | grep mysql-apt-config \
-    | grep href \
-    | awk -F '"' '{print "https://dev.mysql.com" $2}' \
+RUN curl -s https://dev.mysql.com/downloads/repo/apt/ | grep mysql-apt-config \
+    | grep href | awk -F '=' '{gsub(/&p/, "", $4); print "https://dev.mysql.com/get/"$4}' \
     | xargs wget -O mysql-apt-config.deb \
-    && dpkg -i mysql-apt-config.deb \
-    && apt update
+    && dpkg -i mysql-apt-config.deb && apt update
 
 # Install dependencies
 RUN apt-get update && apt-get install -y \

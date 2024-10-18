@@ -46,16 +46,19 @@ services:
       - w3c-network
 
   mysql:
-     image: mysql:8.0.17
+     image: mysql:latest
      container_name: w3c-mysql
      ports:
         - "3306:3306"
      restart: unless-stopped
+     tty: true
      environment:
         MYSQL_DATABASE: w3c-sockets
         MYSQL_USER: root
         MYSQL_PASSWORD: "yourawesomemysqlpassword"
         MYSQL_ROOT_PASSWORD: "yourawesomemysqlpassword"
+        SERVICE_TAGS: dev
+        SERVICE_NAME: mysql
      networks:
          - w3c-network
      volumes:
@@ -92,4 +95,4 @@ EOL
 
 docker-compose down --remove-orphans
 
-docker-compose up -d — build
+docker-compose up --build
