@@ -1,2 +1,4 @@
 docker-compose.yml
 startup_script.sh
+*_ubuntu_24.04.sh
+docker/nginx/production*.conf
